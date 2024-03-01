@@ -7,9 +7,9 @@ const axios = require('axios');
 router.post('', async (req, res) => {
     async function fetchChainData() {
       try {
-        let json = JSON(req.body); 
+        let json = JSON.stringify(req.body); 
         if (!json) {
-          res.status(500).json({message:"Request is not being recieved"})
+          res.status(500).json({message:"Request is not JSON"})
         }
         const response = await axios.post('http://localhost:8090',req.body);
         res.status(200).json(response.data)
@@ -19,3 +19,5 @@ router.post('', async (req, res) => {
     }
     fetchChainData();
 })
+
+module.exports = router;
